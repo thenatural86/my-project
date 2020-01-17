@@ -1,28 +1,45 @@
 import React, { Component } from "react"
-import { Text, TextInput, View } from "react-native"
+import { Button, StyleSheet, View } from "react-native"
 
-export default class PizzaTranslator extends Component {
-  constructor(props) {
-    super(props)
-    this.state = { text: "" }
+export default class ButtonBasics extends Component {
+  _onPressButton() {
+    alert("You tapped the button!")
   }
 
   render() {
     return (
-      <View style={{ backgroundColor: "skyblue" }}>
-        <TextInput
-          style={{ height: 100 }}
-          placeholder="Type Here "
-          onChangeText={text => this.setState({ text })}
-          value={this.state.text}
-        />
-        <Text style={{ padding: 10, fontSize: 42 }}>
-          {this.state.text
-            .split(" ")
-            .map(word => word && "🍕")
-            .join(" ")}
-        </Text>
+      <View style={styles.container}>
+        <View style={styles.container}>
+          <Button onPress={this._onPressButton} title="Press Me" />
+        </View>
+        <View Styles={styles.buttonContainer}>
+          <Button
+            onPress={this._onPressButton}
+            title="Press Me"
+            color="#841584"
+          />
+        </View>
+        <View style={styles.alternativeLayoutButtonContainer}>
+          <Button onPress={this._onPressButton} title="This looks great!" />
+
+          <Button onPress={this._onPressButton} title="OK!" color="#841584" />
+        </View>
       </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center"
+  },
+  buttonContainer: {
+    margin: 20
+  },
+  alternativeLayoutButtonContainer: {
+    margin: 20,
+    flexDirection: "row",
+    justifyContent: "space-between"
+  }
+})
